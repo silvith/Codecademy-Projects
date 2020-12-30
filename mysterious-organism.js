@@ -40,17 +40,11 @@ const pAequorFactory = (specimenNum, dna) => {
         console.log(`Specimen ${this.specimenNum} and specimen ${sibling.specimenNum} have ${percentage}% DNA strands in common.`);
       },
       willLikelySurvive() {
-        let gBases = 0;
-        let cBases = 0;
-        for (base of this.dna) {
-          if (base == 'G') {
-            gBases++;
-          } else if (base == 'C') {
-            cBases++;
-          }
-        };
-        gBases *= Math.floor((100/15));
-        cBases *= Math.floor((100/15));
+        let gBases = this.dna.filter(strand => strand == 'G' );        
+        let cBases = this.dna.filter(strand => strand == 'C' );
+        
+        gBases = gBases.length * Math.floor((100/15));
+        cBases = cBases.length * Math.floor((100/15));
 
         if (gBases >= 60 || cBases >= 60) {
           return true;
@@ -85,3 +79,4 @@ do {
   id++;
 } 
 while ( strongThings.length < 30);
+console.log(strongThings);
